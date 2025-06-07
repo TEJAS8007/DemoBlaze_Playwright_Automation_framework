@@ -1,0 +1,12 @@
+    {
+        "title" : "STORE",
+        "login_url"   : " https://www.demoblaze.com/index.html",
+        "product_Name" : "Samsung galaxy s6" ,
+        "product_price" : "$360",
+        "Home_url"   : " https://www.demoblaze.com/index.html",
+        "product_url" : " https://www.demoblaze.com/prod.html?idp_=1" ,
+        "product_page_price": "$360 *includes tax" ,
+        "payment_url" : " https://www.demoblaze.com/cart.html" ,
+        "payment_product_price" : "360" 
+
+    }
