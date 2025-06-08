@@ -100,6 +100,7 @@
 
                         await utils.waitForElement(this.page,this.cart_Button);
                         await this.page.locator(this.cart_Button).click();
+                        await this.page.waitForTimeout(1000);
                     }
                 }
 
