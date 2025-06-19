@@ -13,9 +13,9 @@
 
     export class Login_page {
 
-        constructor(page) {
+        constructor(page,log) {
             this.page=page;
-
+            this.log=log;
             // Signup Locators
             this.sign_UP_="a#signin2";
             this.sign_UP_UN="input#sign-username";
@@ -35,9 +35,9 @@
 
             try {
                 await expect(this.page).toHaveTitle(data.title);
-                log.info('Login Title Passed Succesfully...');
+                this.log.info('Login Title Passed Succesfully...');
             } catch(error) {
-                log.error('Login Title not Passed Succesfully...');
+                this.log.error('Login Title not Passed Succesfully...');
             }
         }
 
@@ -47,9 +47,9 @@
 
             try {
                 await expect(this.page).toHaveURL(data.login_url);
-                log.info('Login Url Passed Succesfully...');
+                this.log.info('Login Url Passed Succesfully...');
             } catch(error) {
-                log.error('Login Url not Passed Succesfully...');
+                this.log.error('Login Url not Passed Succesfully...');
             }
         }
 
@@ -58,23 +58,23 @@
             // Signup Action
             await utils.waitForElement(this.page,this.sign_UP_); 
             await this.page.locator(this.sign_UP_).click();
-            log.info('Click_On_SignUp_Done');
+            this.log.info('Click_On_SignUp_Done');
 
             await this.page.waitForTimeout(1000);
             await this.page.locator(this.sign_UP_UN).fill(uname);
             try {
                 await expect(this.page.locator(this.sign_UP_UN)).toHaveValue(uname);
-                log.info('SignUp Username passed successfully...');
+                this.log.info('SignUp Username passed successfully...');
             } catch(error) {
-                log.error('SignUp username not passed...')
+                this.log.error('SignUp username not passed...')
             }
 
             await this.page.locator(this.sign_UP_PS).fill(pass);
             try {
                 await expect(this.page.locator(this.sign_UP_PS)).toHaveValue(pass);
-                log.info('SignUp password passed successfully...');
+                this.log.info('SignUp password passed successfully...');
             } catch(error) {
-                log.error('SignUp password not passed...')
+                this.log.error('SignUp password not passed...')
             }
 
             await utils.waitForElement(this.page,this.sign_UP_Button);
@@ -93,17 +93,17 @@
             await this.page.locator(this.login_UP_UN).fill(uname);
              try {
                 await expect(this.page.locator(this.login_UP_UN)).toHaveValue(uname);
-                log.info('Login Username passed successfully...');
+                this.log.info('Login Username passed successfully...');
             } catch(error) {
-                log.error('Login username not passed...')
+                this.log.error('Login username not passed...')
             }
 
             await this.page.locator(this.login_UP_PS).fill(pass);
             try {
                 await expect(this.page.locator(this.login_UP_PS)).toHaveValue(pass);
-                log.info('login password passed successfully...');
+                this.log.info('login password passed successfully...');
             } catch(error) {
-                log.error('login password not passed...')
+                this.log.error('login password not passed...')
             }
 
             await utils.waitForElement(this.page,this.login_UP_Button); 
@@ -114,6 +114,28 @@
             await this.page.waitForTimeout(2000);
         }
 
+         async login_With_Credentials(username, password) {
+            
+            await this.page.locator(this.Login_).click();
+            await this.page.locator(this.login_UP_UN).fill(username);
+            try {
+                await expect(this.page.locator(this.login_UP_UN)).toHaveValue(username);
+                this.log.info(`login username for ${username} passed`);
+            } catch(error) {
+                this.log.error(`login username for ${username} not passed`);
+            }
+            await this.page.locator(this.login_UP_PS).fill(password);
+            try {
+                await expect(this.page.locator(this.login_UP_PS)).toHaveValue(password);
+                this.log.info(`login password for ${username} passed`);
+            } catch(error) {
+                this.log.error(`login password for ${username} not passed`);
+            }
+            await this.page.locator(this.login_UP_Button).click();
+
+            await this.page.waitForTimeout(2000); 
+
+        }
         
 
     }

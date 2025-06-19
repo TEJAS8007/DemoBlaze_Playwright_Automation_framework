@@ -11,9 +11,9 @@ const data=require('../Utilities/Data.json');
 const log=require('../Utilities/logger');
 export class Product_Page {
 
-    constructor(page){
+    constructor(page,log){
         this.page=page;
-
+        this.log=log;
         this.product_Name="//h2[text()='Samsung galaxy s6']";
         this.product_Price="h3.price-container";
         this.product_Info="div[id='more-information'] p";
@@ -28,9 +28,9 @@ export class Product_Page {
 
         try {
                 await expect(this.page).toHaveTitle(data.title);
-                log.info('Product Title Passed Succesfully...');
+                this.log.info('Product Title Passed Succesfully...');
             } catch(error) {
-            log.error('Product Title not Passed Succesfully...');
+            this.log.error('Product Title not Passed Succesfully...');
             }
     }
 
@@ -40,9 +40,9 @@ export class Product_Page {
 
             try {
             await expect(this.page).toHaveURL(data.product_url);
-            log.info('product url Passed Succesfully...');
+            this.log.info('product url Passed Succesfully...');
         } catch(error) {
-        log.error('product url not Passed Succesfully...');
+        this.log.error('product url not Passed Succesfully...');
         }
     }
 
@@ -52,9 +52,9 @@ export class Product_Page {
         const name= await this.page.locator(this.product_Name);
         try {
             await expect(this.page.locator(this.product_Name)).toHaveText(data.product_Name);
-            log.info('Product Name Validation Succesfull....');
+            this.log.info('Product Name Validation Succesfull....');
         } catch (error) {
-            log.error('product Name validation not succesfull....');
+            this.log.error('product Name validation not succesfull....');
         }
 
         const names= await name.textContent();
@@ -67,9 +67,9 @@ export class Product_Page {
         const price= await this.page.locator(this.product_Price);
         try {
             await expect(this.page.locator(this.product_Price)).toHaveText(data.product_page_price);
-            log.info('Product price Validation Succesfull....');
+            this.log.info('Product price Validation Succesfull....');
         } catch (error) {
-            log.error('product price validation not succesfull....');
+            this.log.error('product price validation not succesfull....');
         }
 
         const prices= await price.textContent();
@@ -82,9 +82,9 @@ export class Product_Page {
         const info= await this.page.locator(this.product_Info);
         try {
             await expect(this.page.locator(this.product_Info)).toBeVisible();
-            log.info('Product Info Validation sucesfull...');
+            lthis.logog.info('Product Info Validation sucesfull...');
         } catch (error) {
-            log.error('Product Info Validation not succesfull....');
+            this.log.error('Product Info Validation not succesfull....');
         }
         const infos= await info.textContent();
         console.log("Product Info : "+infos);

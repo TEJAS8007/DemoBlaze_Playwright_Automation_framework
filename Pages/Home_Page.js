@@ -11,9 +11,9 @@
     const data=require('../Utilities/Data.json');
     export class Home_page {
 
-    constructor(page){
+    constructor(page,log){
         this.page=page;
-
+        this.log=log;
         this.product_Name="div[class='card-block'] h4 a";
         this.product_Price="div[class='card-block'] h5";
         this.product="//a[text()='Samsung galaxy s6']";
@@ -26,9 +26,9 @@
 
             try {
                 await expect(this.page).toHaveTitle(data.title);
-                log.info('Home Title Passed Succesfully...');
+                this.log.info('Home Title Passed Succesfully...');
             } catch(error) {
-            log.error('Home Title not Passed Succesfully...');
+                this.log.error('Home Title not Passed Succesfully...');
             }
         }
 
@@ -38,9 +38,9 @@
 
             try {
             await expect(this.page).toHaveURL(data.login_url);
-            log.info('Home url Passed Succesfully...');
+            this.log.info('Home url Passed Succesfully...');
         } catch(error) {
-        log.error('Home url not Passed Succesfully...');
+        this.log.error('Home url not Passed Succesfully...');
     }
         }
 
@@ -51,9 +51,9 @@
 
             try {
                 await expect(this.page.locator(this.product_Name)).toHaveCount(9);
-                log.info('Product Count Validated Successfully...');
+                this.log.info('Product Count Validated Successfully...');
             } catch (error) {
-                log.error('Product count not validated Successfully....');
+                this.log.error('Product count not validated Successfully....');
             }
             const count=await names.count();
             console.log(count);
@@ -69,9 +69,9 @@
 
                 try {
                 await expect(this.page.locator(this.product_Price)).toHaveCount(9);
-                log.info('Product price Validated Successfully...');
+                this.log.info('Product price Validated Successfully...');
             } catch (error) {
-                log.error('Product price not validated Successfully....');
+                this.log.error('Product price not validated Successfully....');
             }
 
             const count=await price.count();
