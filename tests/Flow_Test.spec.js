@@ -1,3 +1,10 @@
+/**
+ * @author          Tejas Jayendra Aware
+ * @applicationURL  https://www.demoblaze.com/index.html
+ * @description     [Flow_Test Containing Test calling page Objects...]
+ * @createdOn       [04-June-2025]
+ * @lastModifiedBy  Tejas Jayendra Aware
+ */
 const { test, expect, chromium } = require('@playwright/test');
 const getLogger = require('../Utilities/logger'); // getLogger is a function now
 const data = require('../Utilities/Data.json');
@@ -9,11 +16,12 @@ import { Home_page } from '../Pages/Home_Page';
 import { Product_Page } from '../Pages/Product_Page';
 import { Payment_Page } from '../Pages/Payment_Page';
 import { Laptops_Page } from '../Pages/Laptops_Page';
+import {UI_Validation_Page} from '../Pages/UI_Validation_Page';
 
 import { faker } from '@faker-js/faker';
 import { Monittors_Page } from '../Pages/Monitors_Page';
 
-    let login, home, product, payment, laptop,monitor;
+    let login, home, product, payment, laptop,monitor,ui;
     let browser, context, page;
     let user_ID, user_Pass;
     let name, country, city, credit, month, year;
@@ -45,6 +53,7 @@ import { Monittors_Page } from '../Pages/Monitors_Page';
             payment = new Payment_Page(page,log);
             laptop = new Laptops_Page(page,log);
             monitor=new Monittors_Page(page,log);
+            ui=new UI_Validation_Page(page,log);
 
             // Faker test data
             user_ID = faker.internet.username();
@@ -80,7 +89,7 @@ import { Monittors_Page } from '../Pages/Monitors_Page';
             if (log) {
                 log.debug('------------After Each Ended------------------------------');
             }
-});
+        });
    
     test.describe.serial('Demo_Blaze Test Suite', () => {
 
@@ -153,4 +162,21 @@ import { Monittors_Page } from '../Pages/Monitors_Page';
                 
             });
         }
-});
+    });
+
+    test.describe.serial('UI_Valdation_Test',async ()=> {
+
+        test('UI_Validation_Test',async ()=>{
+
+            log.info('UI Validation test Started....');
+            await ui.verify_Page_Title(data.title);
+            await ui.verify_Page_url(data.login_url);
+            await ui.verify_Page_Logo();
+            await ui.verify_Page_Navigation_links();
+            await ui.verify_Page_Categories_links();
+            await ui.verify_About_Us();
+            await ui.Verify_Get_In_Touch();
+            await ui.Verify_Footer_Logo();
+            log.info('UI Validation test Ended....');
+        });
+    });
