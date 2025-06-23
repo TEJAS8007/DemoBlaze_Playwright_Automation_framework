@@ -10,6 +10,7 @@ const getLogger = require('../Utilities/logger'); // getLogger is a function now
 const data = require('../Utilities/Data.json');
 import fs from 'fs';
 import { parse } from 'csv-parse/sync';
+require('dotenv').config({path: 'testData/Data.env'});
 
 import { Login_page } from '../Pages/Login_Page';
 import { Home_page } from '../Pages/Home_Page';
@@ -180,3 +181,20 @@ import { Monittors_Page } from '../Pages/Monitors_Page';
             log.info('UI Validation test Ended....');
         });
     });
+
+    test.describe.serial('Login with .env Credentials', () => {
+    test('Login Using ENV Data', async () => {
+        log.info('Login using .env data Started...');
+        
+        const username = process.env.LOGIN_USERNAME;
+        const password = process.env.LOGIN_PASSWORD;
+
+        if (!username || !password) {
+            throw new Error("ENV variables LOGIN_USERNAME or LOGIN_PASSWORD are missing.");
+        }
+
+        await login.login_With_Credentials(username, password);
+
+        log.info('Login using .env data Completed...');
+    });
+});
