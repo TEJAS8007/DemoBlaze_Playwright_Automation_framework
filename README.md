@@ -1,42 +1,42 @@
-# 🧪 DemoBlaze Playwright Automation Framework
+# 🧪 Demoblaze Automation Framework
 
-This project is a **hybrid Playwright test automation framework** built to test end-to-end scenarios of the [Demoblaze e-commerce site](https://www.demoblaze.com/index.html). The framework supports functionalities such as **user signup**, **login**, **viewing products**, **adding to cart**, and **checkout with payment** using modular and reusable code components.
-
----
-
-## 🚀 Features
-
-- ✅ End-to-End Test Flow
-- 🧱 Page Object Model (POM) Design
-- 🔁 Reusable Utility Methods (Waits, Alert Handling, etc.)
-- 🔐 Dynamic User Generation using `@faker-js/faker`
-- 📋 Custom Logging via `winston`
-- 📹 Video Recording Support
-- 📂 Clear Directory Structure
-- 📊 HTML Reporting (via Playwright)
+This is an end-to-end hybrid automation testing framework built using **Playwright** for the [Demoblaze](https://www.demoblaze.com/index.html) website.
 
 ---
 
 ## 📂 Folder Structure
 
-HybridFramework_Demoblaze/
-├── tests/
-│ └── Flow_Test.spec.js # Main end-to-end test
-├── Pages/
-│ ├── Login_Page.js
+DEMO_BLAZE/
+│
+├── Pages/ # Page Object Model (POM) files for each page
 │ ├── Home_Page.js
-│ ├── Product_Page.js
+│ ├── Laptops_Page.js
+│ ├── Login_Page.js
+│ ├── Monitors_Page.js
 │ ├── Payment_Page.js
-├── Utilities/
-│ ├── Utils.js # wait, alert handlers
-│ ├── Data.json # test data
-│ ├── logger.js # winston logger setup
-├── Videos/ # Video recordings of test runs
-├── logs/
-│ └── combined.log # Test execution logs
-├── playwright.config.js # Playwright configuration
-├── package.json
-├── .gitignore
+│ ├── Product_Page.js
+│ └── UI_Validation_Page.js
+│
+├── tests/ # Test scripts
+│ └── Flow_Test.spec.js # Main test flow (Signup → Login → View Product → Add to Cart → Checkout → Payment)
+│
+├── Utilities/ # Reusable utility functions (e.g., wait, alert handling)
+│
+├── testData/ # Test data files (e.g., .env, CSVs, etc.)
+│
+├── test-results/ # Stores Playwright test output
+├── playwright-report/ # Auto-generated HTML test reports
+├── logs/ # Log files (if any)
+├── node_modules/ # Project dependencies
+├── Videos/ # Playwright video recordings (optional)
+│
+├── .gitignore # Git ignored files
+├── Demo_Blaze.zip # Zipped version of the framework (for submission/upload)
+├── package.json # NPM package config
+├── package-lock.json # NPM package lock file
+├── playwright.config.js # Playwright configuration file
+├── README.md # Project documentation
+└── Requirements.md # List of prerequisites or tools needed
 
 yaml
 Copy
@@ -44,54 +44,82 @@ Edit
 
 ---
 
-## 🛠️ Installation & Setup
+## 🚀 Features
 
-1. **Clone the repository**  
+- Page Object Model (POM) design
+- Flow-based test covering:
+  - User Signup
+  - User Login
+  - Viewing Products
+  - Adding Product to Cart
+  - Checkout and Payment
+- UI element validation
+- Functional validations
+- Test data separation
+- Utility methods for reusability
+- HTML Report generation
+- Video recording support
+
+---
+
+## ✅ Prerequisites
+
+- Node.js (v16+ recommended)
+- npm
+- Playwright
+
+---
+
+## 🔧 Setup Instructions
+
 ```bash
-git clone https://github.com/TEJAS8007/DemoBlaze_Playwright_Automation_framework.git
-cd DemoBlaze_Playwright_Automation_framework
-Install dependencies
+# 1. Clone the repository
+git clone <your-repo-url>
 
-bash
-Copy
-Edit
+# 2. Navigate to the project
+cd DEMO_BLAZE
+
+# 3. Install dependencies
 npm install
-Run tests
 
+# 4. Install Playwright browsers (if not already done)
+npx playwright install
+▶️ Running Tests
 bash
 Copy
 Edit
+# Run all tests
 npx playwright test
-View HTML report
 
-bash
-Copy
-Edit
-npx playwright show-report
-📦 Tech Stack
-Playwright
+# Run a specific test file
+npx playwright test tests/Flow_Test.spec.js
+📄 Reports & Recordings
+After test execution:
 
-JavaScript (ES6)
+View HTML report: npx playwright show-report
 
-Faker.js for random test data
+Recordings (if enabled): Available under /Videos
 
-Winston for logging
+Logs: Check /logs (if implemented)
 
-Node.js
+🛠 Utilities
+Reusable helper functions like:
 
-✍️ Author Info
-👨‍💻 Author: Tejas Jayendra Aware
+Wait for element
 
-🔗 GitHub: TEJAS8007
+Alert handling
 
-🛠 Created: June 2025
+Common selectors
 
-🌐 Application Under Test: Demoblaze
+These are located in the /Utilities folder.
 
-📌 Notes
-Ensure you have a stable internet connection to access the Demoblaze site.
+📂 Test Data
+Sensitive or test data can be stored in:
 
-The framework currently uses a single end-to-end test file (Flow_Test.spec.js) to cover all flows for simplicity.
+.env file (for credentials)
 
-🤝 Contributions
-Feel free to fork and contribute improvements!
+.csv or .json under testData/
+
+👨‍💻 Author
+Tejas Jayendra Aware
+Automation Test Engineer | Playwright | Java | Selenium
